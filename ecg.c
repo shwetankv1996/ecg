@@ -31,10 +31,9 @@ int main (int,char**)
 	for(;;) 
 	{
 		// the data file has 3 channels and time
-		short x1,x2,x3,y;
-		int t;
-		if (fscanf(finput,"%d %hd %hd %hd\n",&t,&x1,&x2,&x3)<1) break;
-		y = biquad1.filter(x2);
+		short x,y;
+		if (fscanf(finput,"%hd\n",&x)<1) break;
+		y = biquad1.filter(x);
 		y = biquad2.filter(y);
 		fprintf(foutput,"%hd\n",y);
 	}
