@@ -1,5 +1,5 @@
-#ifndef DIRECT_FORM_I_H
-#define DIRECT_FORM_I_H
+#ifndef ECG_H
+#define ECG_H
 
 class DirectFormI
 {
