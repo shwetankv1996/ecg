@@ -9,9 +9,9 @@ public:
 	// the coefficients have been scaled up by the factor
 	// 2^q which need to scaled down by this factor after every
 	// time step which is taken care of.
-	DirectFormI(const short int b0, const short int b1, const short int b2, 
-		    const short int a1, const short int a2, 
-		    const short int q = 15)
+	DirectFormI(float b0, float b1, float b2, 
+		    float a1, float a2, 
+		    float q = 15)
 	{
 		// coefficients are scaled by factor 2^q
 		q_scaling = q;
@@ -26,9 +26,9 @@ public:
 	}
 
 	// convenience function which takes the a0 argument but ignores it!
-	DirectFormI(const short int b0, const short int b1, const short int b2, 
-		    const short int, const short int a1, const short int a2, 
-		    const short int q = 15)
+	DirectFormI(float b0, float b1, float b2, 
+		    float, float a1, float a2, 
+		    float q = 15)
 	{
 		// coefficients are scaled by factor 2^q
 		q_scaling = q;
@@ -51,17 +51,17 @@ public:
 	}
 
 	// filtering operation: one sample in and one out
-	inline short int filter(const short int in)
+	inline float filter(float in)
 	{
 		// calculate the output
-		register int out_upscaled = (int)c_b0*(int)in
-			+ (int)c_b1*(int)m_x1 
-			+ (int)c_b2*(int)m_x2
-			- (int)c_a1*(int)m_y1 
-			- (int)c_a2*(int)m_y2;
+		register float out =  c_b0* in
+			+  c_b1* m_x1 
+			+  c_b2* m_x2
+			-  c_a1* m_y1 
+			-  c_a2* m_y2;
 
-		// scale it back from int to short int
-		short int out = out_upscaled >> q_scaling;
+		// scale it back from int to float
+//		float out = out_upscaled >> q_scaling;
 
 		// update the delay lines
 		m_x2 = m_x1;
@@ -74,17 +74,17 @@ public:
 	
 private:
 	// delay line
-  	short int m_x2; // x[n-2]
-  	short int m_y2; // y[n-2]
-  	short int m_x1; // x[n-1]
-  	short int m_y1; // y[n-1]
+  	float m_x2; // x[n-2]
+  	float m_y2; // y[n-2]
+  	float m_x1; // x[n-1]
+  	float m_y1; // y[n-1]
 
 	// coefficients
-  	short int c_b0,c_b1,c_b2; // FIR
-  	short int c_a1,c_a2; // IIR
+  	float c_b0,c_b1,c_b2; // FIR
+  	float c_a1,c_a2; // IIR
 
 	// scaling factor
-	short int q_scaling; // 2^q_scaling
+	float q_scaling; // 2^q_scaling
 };
 
 #endif
