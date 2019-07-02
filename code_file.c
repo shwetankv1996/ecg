@@ -31,13 +31,50 @@ void ecg(float *in, float *out, unsigned int size)
 		m_y2 = m_y1;
 		m_x1 = in[i];
 		m_y1 = out[i];
-		    printf("%f\n",out[i]);
+//		    printf("%f\n",out[i]);
 }
+}
+
+void heartbeat(float *in, unsigned int size, unsigned int freq)
+{
+    int k = 0;
+    float avg = 0.0;
+    int ind[100];
+    float max = in[0];
+    int beat = 0;
+    int index;
+    for (int i=0; i<size; i++)
+    {
+        avg = (avg + in[i])/2;
+        if(max<in[i])
+        {
+        max = in[i];
+        index = i;    
+        }
+    }
+    for (int i=0; i<size; i++)
+    {
+    
+            if((in[i]-avg)>200)
+        {
+            i+=5;
+            beat++;
+            ind[k] = i;
+            printf("%d\n", ind[k]);
+            k++;
+        }
+}
+int index_diff = ind[1]-ind[0];
+beat = (200 / index_diff)*60;
+    printf("the maximum value is:   %f  at index    %d",max,index);
+    printf("\nthe heart beat is    %d",beat);
+    printf("\nthe average is    %f",avg);
 }
 int main(void) {
     ecg(a, b, 10000);
+//    for(int i=0; i<sizeof(b);i++)
+//   printf("%f\n", b[i]);
+    heartbeat(b, 10000, 200);
 	// your code goes here
 	return 0;
 }
-
-

@@ -15,3 +15,10 @@ Now to get the heartbeat of the data we will check the simultaneous peaks in the
 https://github.com/berndporr/iir_fixed_point/blob/master/Makefile
 https://www.earlevel.com/main/2012/11/26/biquad-c-source-code/
 https://www.youtube.com/watch?v=dJCZc8mJrRo
+
+g++ (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
