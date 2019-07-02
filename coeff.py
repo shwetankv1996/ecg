@@ -6,7 +6,7 @@ import pylab as pl
 # integer filter
 
 # sampling rate
-fs = 1000
+fs = 200
 
 # cutoffs
 f1 = 45
